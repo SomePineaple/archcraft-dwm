@@ -1,9 +1,14 @@
 /* See LICENSE file for copyright and license details. */
+
 /* Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
  * 
+=======
+/* Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com>
+ *
+>>>>>>> c0b0ba0 (change keybindings)
  * DWM Configuration for Archcraft
  * Patched By : siduck76 <https://github.com/siduck76>
- * 
+ *
  * */
 
 /* ******************** Configurations ******************** */
@@ -54,10 +59,10 @@ static const char *colors[][3]  = {
     [SchemeTag6]       = { yellow, black,  black },
     [SchemeTag7]       = { pink,   black,  black },
     [SchemeTag8]       = { cyan,   black,  black },
-    [SchemeLayout]     = { green,  black,  black }, 
-    [SchemeBtnPrev]    = { green,  black,  black }, 
-    [SchemeBtnNext]    = { yellow, black,  black }, 
-    [SchemeBtnClose]   = { red,    black,  black }, 
+    [SchemeLayout]     = { green,  black,  black },
+    [SchemeBtnPrev]    = { green,  black,  black },
+    [SchemeBtnNext]    = { yellow, black,  black },
+    [SchemeBtnClose]   = { red,    black,  black },
 };
 
 /* ******************** Tags/Workspaces ******************** */
@@ -85,7 +90,7 @@ static const Rule rules[] = {
 	{ "Firefox",  			NULL,       NULL,       1 << 8,       0,           0,           -1 },
 	{ "Viewnior",  			NULL,       NULL,       0,       	  1,           1,           -1 },
 	{ "MPlayer",  			NULL,       NULL,       0,       	  1,           1,           -1 },
-	{ "Pcmanfm",  			NULL,       NULL,       0,       	  1,           1,           -1 },
+//	{ "Pcmanfm",  			NULL,       NULL,       0,       	  1,           1,           -1 },
 	{ "Music",  			NULL,       NULL,       0,       	  1,           1,           -1 },
 	{ "Yad",  				NULL,       NULL,       0,       	  1,           1,           -1 },
 	{ "feh",  				NULL,       NULL,       0,       	  1,           1,           -1 },
@@ -143,7 +148,7 @@ static const char *dmenucmd[]  			= { "dmenu", NULL };
 
 /* Launch Apps */
 static const char *stcmd[]  			= { "st", NULL };
-static const char *termcmd[]  			= { "/usr/share/archcraft/dwm/bin/dwmterm.sh", NULL };
+static const char *termcmd[]  			= { "/usr/bin/xfce4-terminal", NULL };
 static const char *floatterm[]  		= { "/usr/share/archcraft/dwm/bin/dwmterm.sh", "-f", NULL };
 static const char *fmcmd[]    			= { "/usr/share/archcraft/dwm/bin/dwmapps.sh", "-f", NULL };
 static const char *editcmd[]  			= { "/usr/share/archcraft/dwm/bin/dwmapps.sh", "-e", NULL };
@@ -204,13 +209,13 @@ static Key keys[] = {
 
 	// Launch Apps -----------
     { MODKEY|ShiftMask, 		XK_f, 						spawn, {.v = fmcmd } },
-    { MODKEY|ShiftMask, 		XK_e, 						spawn, {.v = editcmd } },
+    { MODKEY|ShiftMask, 		XK_b, 						spawn, {.v = upbl } },
     { MODKEY|ShiftMask, 		XK_w, 						spawn, {.v = webcmd } },
-	
+
 	// Rofi Menus -----------
     { ALTKEY, 					XK_F1, 						spawn, {.v = rofi_cmd } },
     { MODKEY, 					XK_m, 						spawn, {.v = rofi_mpdcmd } },
-    { MODKEY, 					XK_n, 						spawn, {.v = rofi_nmcmd } },
+    { MODKEY, 					XK_k, 						spawn, {.v = rofi_nmcmd } },
     { MODKEY, 					XK_r, 						spawn, {.v = rofi_rootcmd } },
     { MODKEY, 					XK_x, 						spawn, {.v = rofi_powercmd } },
     { MODKEY, 					XK_s, 						spawn, {.v = rofi_shotcmd } },
@@ -249,37 +254,37 @@ static Key keys[] = {
     { MODKEY|ShiftMask, 		XK_g, 						togglegaps, {0} }, // Toggle gaps
 
     // inner gaps
-    { MODKEY|ShiftMask, 				XK_i, 				incrigaps, {.i = +1 } },
-    { MODKEY|ControlMask|ShiftMask, 	XK_i, 				incrigaps, {.i = -1 } },
+    { MODKEY|ShiftMask, 				XK_u, 				incrigaps, {.i = +1 } },
+    { MODKEY|ControlMask|ShiftMask, 	XK_u, 				incrigaps, {.i = -1 } },
 
     // outer gaps
-    { MODKEY|ControlMask, 				XK_o, 				incrogaps, {.i = +1 } },
-    { MODKEY|ControlMask|ShiftMask, 	XK_o, 				incrogaps, {.i = -1 } },
-	
+    { MODKEY|ControlMask, 				XK_y, 				incrogaps, {.i = +1 } },
+    { MODKEY|ControlMask|ShiftMask, 	XK_y, 				incrogaps, {.i = -1 } },
+
 	// Window Management -----------
 	/* Murder */
     { MODKEY, 					XK_c, 						killclient, {0} }, // Kill window
     { MODKEY, 					XK_Escape, 					spawn, SHCMD("xkill") }, // xkill
 
 	/* Switch */
-    { MODKEY, 					XK_j, 						focusstack, {.i = +1 } }, // Cycle window
-    { MODKEY, 					XK_k, 						focusstack, {.i = -1 } },
-    { MODKEY|ShiftMask, 		XK_j, 						movestack, {.i = +1 } }, // Switch master
-    { MODKEY|ShiftMask, 		XK_k, 						movestack, {.i = -1 } },
+    { MODKEY, 					XK_n, 						focusstack, {.i = +1 } }, // Cycle window
+    { MODKEY, 					XK_e, 						focusstack, {.i = -1 } },
+    { MODKEY|ShiftMask, 		XK_n, 						movestack, {.i = +1 } }, // Switch master
+    { MODKEY|ShiftMask, 		XK_e, 						movestack, {.i = -1 } },
 
     { MODKEY, 					XK_Left, 					focusstack, {.i = +1 } }, // Cycle window
     { MODKEY, 					XK_Right, 					focusstack, {.i = -1 } },
     { MODKEY|ShiftMask, 		XK_Left, 					movestack, {.i = +1 } }, // Switch master
     { MODKEY|ShiftMask, 		XK_Right, 					movestack, {.i = -1 } },
 
-    { MODKEY, 					XK_i, 						incnmaster, {.i = +1 } }, // Verticle
-    { MODKEY, 					XK_u, 						incnmaster, {.i = -1 } }, // Horizontal
+    { MODKEY, 					XK_u, 						incnmaster, {.i = +1 } }, // Verticle
+    { MODKEY, 					XK_l, 						incnmaster, {.i = -1 } }, // Horizontal
 
 	/* Resize */
-    { MODKEY, 					XK_h, 						setmfact, {.f = -0.05} }, // Shrink left 
-    { MODKEY, 					XK_l, 						setmfact, {.f = +0.05} }, // Shrink right
+    { MODKEY, 					XK_h, 						setmfact, {.f = -0.05} }, // Shrink left
+    { MODKEY, 					XK_i, 						setmfact, {.f = +0.05} }, // Shrink right
 
-    { MODKEY|ControlMask, 		XK_Left, 					setmfact, {.f = -0.05} }, // Shrink left 
+    { MODKEY|ControlMask, 		XK_Left, 					setmfact, {.f = -0.05} }, // Shrink left
     { MODKEY|ControlMask, 		XK_Right, 					setmfact, {.f = +0.05} }, // Shrink right
 
 	/* Misc */
@@ -299,7 +304,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask, 		XK_space, 					togglefloating, {0} },
     { MODKEY, 					XK_f, 						togglefullscr, {0} },
 
-    { MODKEY, 					XK_space, 					setlayout, {0} }, 
+    { MODKEY, 					XK_space, 					setlayout, {0} },
 	{ MODKEY, 					XK_t, 						setlayout, {.v = &layouts[0]} }, // Tile
     { MODKEY, 					XK_g, 						setlayout, {.v = &layouts[10]} }, // Grid
     { MODKEY|ShiftMask, 		XK_m, 						setlayout, {.v = &layouts[1]} }, // Monocle
@@ -307,7 +312,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask, 		XK_t, 						setlayout, {.v = &layouts[5]} }, // Stack
     { MODKEY|ShiftMask, 		XK_c, 						setlayout, {.v = &layouts[11]} }, // Centered master
     { MODKEY|ShiftMask, 		XK_x, 						setlayout, {.v = &layouts[13]} }, // Tatami
-    
+
 };
 
 /* ******************** Button definitions ******************** */
